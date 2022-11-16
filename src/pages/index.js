@@ -71,8 +71,12 @@ const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=de
 
 const IndexPage = () => (
   <Layout>
-    <div className={styles.textCenter}>
-      <StaticImage
+    <h2>asdf</h2>
+    <button>
+      <Link to="/cards">Cards</Link>
+    </button>
+    {/*<div className={styles.textCenter}>
+       <StaticImage
         src="../images/example.png"
         loading="eager"
         width={64}
@@ -114,7 +118,7 @@ const IndexPage = () => (
         <a href={`${link.url}${utmParameters}`}>{link.text}</a>
         {i !== moreLinks.length - 1 && <> · </>}
       </React.Fragment>
-    ))}
+    ))} */}
   </Layout>
 )
 
