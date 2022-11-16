@@ -7,18 +7,15 @@ import * as styles from "../components/index.module.css"
 const IndexPage = ({ data }) => {
   return (
     <Layout>
-      <h2>asdf</h2>
-      <button>
-        <Link to="/cards">Cards</Link>
-      </button>
+      <h2>Welcome guys!</h2>
       <ul className={styles.list}>
         {data.allMarkdownRemark.edges.map(({ node }) => {
           return (
             <li key={node.id} className={styles.listItem}>
               <p>
-                <a className={styles.listItemLink} href="/">
+                <Link className={styles.listItemLink} to={node.fields.slug}>
                   {node.frontmatter.title} ↗
-                </a>
+                </Link>
                 <span style={{ color: "#bbb" }}>--{node.frontmatter.date}</span>
               </p>
               <p
@@ -47,13 +44,15 @@ export const query = graphql`
     allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       edges {
         node {
-          timeToRead
           id
+          fields {
+            slug
+          }
           html
           frontmatter {
-            anthor
             date(formatString: "")
             title
+            anthor
           }
           excerpt(format: HTML)
         }
