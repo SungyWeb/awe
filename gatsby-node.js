@@ -10,12 +10,6 @@ const path = require(`path`)
  */
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
-  })
   const result = await graphql(`
     query {
       allMarkdownRemark {
