@@ -1,9 +1,8 @@
 ---
 title: "hooks “必”坑指南"
 date: "2022-11-15"
-anthor: "sungy"
+tag: 'react'
 ---
-
 # hooks “必”坑指南
 
 React hooks 想必已经不是什么新鲜“玩意”了，它的出现是为了开发者可以在不写`class`组件的情况使用`state`及其他 React 特性。
@@ -92,7 +91,6 @@ const onPageIndexChange = pageIdx => fetch("xxx")
 
 当我们编写组件时，应尽量保证为纯函数。对于组件中的副作用，应明确副作用是视图渲染后主动触发的还是用户行为触发的，前者应该在`useEffect`中处理， 后者应该放到`Event Handlers`中处理
 
-> `useEffect`
 
 ### useRef
 
