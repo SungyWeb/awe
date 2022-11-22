@@ -5,6 +5,7 @@ import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 
 const IndexPage = ({ data }) => {
+  console.log(data)
   return (
     <Layout>
       <h2>Welcome guys!</h2>
