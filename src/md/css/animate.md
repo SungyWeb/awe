@@ -1,7 +1,10 @@
 ---
-title: '前端动效
+title: '前端动效'
 date: '2022-11-18'
+anthor: "sungy"
+tag: "react"
 ---
+
 
 # 背景
 
