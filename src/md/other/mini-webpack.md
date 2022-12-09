@@ -117,8 +117,32 @@ module.exports = webpack
 语法树AST相关的生成、遍历、转换等操作需要借助`babel`
 
 ```mermaid
-graph TD
-	A --> B
+graph LR
+  A[config]
+  B[webpack函数]
+  C[返回compiler]
+  subgraph compiler
+    D[执行copiler.run]
+    E[读取文件]
+    F[对应的loader处理]
+    JSFILE{JS文件?}
+      subgraph js文件
+      G[AST]
+      H[替换关键字require]
+      J[遍历依赖]
+      end
+    I[生成代码]
+    K[写入文件]
+  end
+
+
+
+  A-->B-->C-->D--config.entry-->E-->F-->JSFILE
+  JSFILE--是-->G-->H-->J-->I
+
+  J--依赖文件路径-->E
+  I--混入webpack模板-->K
+
 ```
 
 ```js
