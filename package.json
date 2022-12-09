@@ -11,6 +11,7 @@
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-sharp": "^5.0.0",
     "gatsby-remark-mermaid": "^3.0.1",
+    "gatsby-remark-vscode": "^3.3.1",
     "gatsby-source-filesystem": "^5.0.0",
     "gatsby-transformer-remark": "^6.2.0",
     "gatsby-transformer-sharp": "^5.0.0",
