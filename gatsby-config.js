@@ -16,6 +16,30 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-mermaid`,
+            options: {
+              launchOptions: {
+                executablePath:
+                  "C:/Program Files/Google/Chrome/Application/chrome.exe",
+              },
+              svgo: {
+                plugins: [{ name: "removeTitle", active: false }],
+              },
+              mermaidOptions: {
+                theme: "neutral",
+                themeCSS: ".node rect { fill: #fff; }",
+              },
+            },
+          },
+        ],
+      },
+    },
+    // `gatsby-transformer-remark`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -33,7 +57,7 @@ module.exports = {
         path: `${__dirname}/src/md`,
       },
     },
-    `gatsby-transformer-remark`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
