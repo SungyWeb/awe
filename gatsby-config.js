@@ -60,6 +60,12 @@ module.exports = {
               logLevel: "warn", // Set to 'info' to debug if something looks wrong
             },
           },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
         ],
       },
     },
