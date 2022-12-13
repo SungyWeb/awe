@@ -3,84 +3,80 @@
 <h1>前置知识</h1>
 <p>以webpack 5.x为例，先来简单看个demo，可以看到webpac的输入、输出的代码是什么样的。</p>
 <p>源码</p>
-<pre><code class="language-js">// index.js
-require("./a.js");
-console.log("入口文件");
-
-// a.js
-require("./b.js");
-console.log("a.js 文件");
-
-// b.js
-console.log("b.js 文件");
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="js" data-index="0"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// index.js</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;./a.js&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;入口文件&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// a.js</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;./b.js&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;a.js 文件&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// b.js</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;b.js 文件&quot;</span><span class="mtk1">);</span></span></span></code></pre>
 <p>打包后</p>
-<pre><code class="language-js">(() => {
-  var __webpack_modules__ = {
-    "./a.js": (
-      __unused_webpack_module,
-      __unused_webpack_exports,
-      __webpack_require__
-    ) => {
-      __webpack_require__(/*! ./b.js */ "./b.js");
-
-      console.log("a.js 文件");
-    },
-
-    "./b.js": () => {
-      console.log("b.js 文件");
-    },
-  };
-
-  // The module cache
-  var __webpack_module_cache__ = {};
-
-  // The require function
-  function __webpack_require__(moduleId) {
-    // Check if module is in cache
-    var cachedModule = __webpack_module_cache__[moduleId];
-    if (cachedModule !== undefined) {
-      return cachedModule.exports;
-    }
-    // Create a new module (and put it into the cache)
-    var module = (__webpack_module_cache__[moduleId] = {
-      // no module.id needed
-      // no module.loaded needed
-      exports: {},
-    });
-
-    // Execute the module function
-    __webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-
-    // Return the exports of the module
-    return module.exports;
-  }
-  var __webpack_exports__ = {};
-
-  (() => {
-    __webpack_require__(/*! ./a.js */ "./a.js");
-
-    console.log("入口文件");
-  })();
-})();
-
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="js" data-index="1"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">(() </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">__webpack_modules__</span><span class="mtk1"> = {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk8">&quot;./a.js&quot;</span><span class="mtk12">:</span><span class="mtk1"> (</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">__unused_webpack_module</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">__unused_webpack_exports</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">__webpack_require__</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    ) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk11">__webpack_require__</span><span class="mtk1">(</span><span class="mtk3">/*! ./b.js */</span><span class="mtk1"> </span><span class="mtk8">&quot;./b.js&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;a.js 文件&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk8">&quot;./b.js&quot;</span><span class="mtk12">:</span><span class="mtk1"> () </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;b.js 文件&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  };</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk3">// The module cache</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">__webpack_module_cache__</span><span class="mtk1"> = {};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk3">// The require function</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">__webpack_require__</span><span class="mtk1">(</span><span class="mtk12">moduleId</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// Check if module is in cache</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">cachedModule</span><span class="mtk1"> = </span><span class="mtk12">__webpack_module_cache__</span><span class="mtk1">[</span><span class="mtk12">moduleId</span><span class="mtk1">];</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk12">cachedModule</span><span class="mtk1"> !== </span><span class="mtk4">undefined</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">cachedModule</span><span class="mtk1">.</span><span class="mtk12">exports</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// Create a new module (and put it into the cache)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">module</span><span class="mtk1"> = (</span><span class="mtk12">__webpack_module_cache__</span><span class="mtk1">[</span><span class="mtk12">moduleId</span><span class="mtk1">] = {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk3">// no module.id needed</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk3">// no module.loaded needed</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">exports:</span><span class="mtk1"> {},</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    });</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// Execute the module function</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">__webpack_modules__</span><span class="mtk1">[</span><span class="mtk12">moduleId</span><span class="mtk1">](</span><span class="mtk10">module</span><span class="mtk1">, </span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk10">exports</span><span class="mtk1">, </span><span class="mtk12">__webpack_require__</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// Return the exports of the module</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk10">exports</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">__webpack_exports__</span><span class="mtk1"> = {};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  (() </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk11">__webpack_require__</span><span class="mtk1">(</span><span class="mtk3">/*! ./a.js */</span><span class="mtk1"> </span><span class="mtk8">&quot;./a.js&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk10">console</span><span class="mtk1">.</span><span class="mtk11">log</span><span class="mtk1">(</span><span class="mtk8">&quot;入口文件&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  })();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">})();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span></code></pre>
 <p>可以看到打包产物是一个立即执行函数，将除了入口文件的代码以文件名为key，以文件内代码为value，保存到名为<code>__webpack_modules__</code>的对象中；接着实现了一个<code>__webpack_require__</code>方法，并将代码中的<code>require</code>替换成该函数；最后执行入口文件代码。</p>
 <p>通过入口文件，将直接依赖或间接依赖以module的形式组织到一起，并通过自行实现的<code>require</code>实现模块的同步加载。</p>
 <h1>初始化参数</h1>
 <p>webpack函数接收一些配置项，并返回一个<a href="https://www.webpackjs.com/api/node/#compiler-instance">compiler对象</a>，compiler对象包含<code>run</code>方法来执行编译，即大致流程如下</p>
-<pre><code class="language-js">const webpack = require('webpack')
-const compiler = webpack(options)
-compiler.run((err) => {   })
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="js" data-index="2"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">webpack</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&#39;webpack&#39;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">compiler</span><span class="mtk1"> = </span><span class="mtk11">webpack</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">compiler</span><span class="mtk1">.</span><span class="mtk11">run</span><span class="mtk1">((</span><span class="mtk12">err</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {   })</span></span></span></code></pre>
 <p>先来实现webpack方法</p>
-<pre><code class="language-js">function webpack(options) {
-  const compiler = new Compiler(options)
-  return compiler
-}
-
-module.exports = webpack
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="js" data-index="3"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">webpack</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">compiler</span><span class="mtk1"> = </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">Compiler</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">compiler</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk10">exports</span><span class="mtk1"> = </span><span class="mtk12">webpack</span></span></span></code></pre>
 <p>接下来实现<code>Compiler</code>类，首先要明确编译过程需要做的事情</p>
 <ol>
 <li>读取入口文件，将入口文件交给匹配的loader处理，返回处理后的代码</li>
@@ -89,196 +85,300 @@ module.exports = webpack
 <li>编译结束后，每个文件都有对应的处理结果，将这些文件的文件结果从最初的的入口文件开始，组织到一起</li>
 </ol>
 <p>语法树AST相关的生成、遍历、转换等操作需要借助<code>babel</code></p>
-<pre><code class="language-mermaid">graph TD
-	A --> B
-</code></pre>
-<pre><code class="language-js">const fs = require("fs");
-const path = require("path");
-const parser = require("@babel/parser");
-const traverser = require("@babel/traverse");
-const t = require("@babel/types");
-const generate = require("babel-generator");
-
-class Compiler {
-  constructor(options) {
-    this.options = options || {};
-
-    // 保存编译过的module
-    this.modules = new Set();
+<p><svg viewBox="-8 -8 2128.390625 246.703125" style="max-width: 2128.390625px;" aria-labelledby="chart-title-remark-mermaid-0 chart-desc-remark-mermaid-0" role="img" xmlns="http://www.w3.org/2000/svg" width="100%" id="remark-mermaid-0"><desc id="chart-desc-remark-mermaid-0"></desc><style>#remark-mermaid-0 {font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#remark-mermaid-0 .error-icon{fill:#552222;}#remark-mermaid-0 .error-text{fill:#552222;stroke:#552222;}#remark-mermaid-0 .edge-thickness-normal{stroke-width:2px;}#remark-mermaid-0 .edge-thickness-thick{stroke-width:3.5px;}#remark-mermaid-0 .edge-pattern-solid{stroke-dasharray:0;}#remark-mermaid-0 .edge-pattern-dashed{stroke-dasharray:3;}#remark-mermaid-0 .edge-pattern-dotted{stroke-dasharray:2;}#remark-mermaid-0 .marker{fill:#666;stroke:#666;}#remark-mermaid-0 .marker.cross{stroke:#666;}#remark-mermaid-0 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#remark-mermaid-0 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#remark-mermaid-0 .cluster-label text{fill:#333;}#remark-mermaid-0 .cluster-label span{color:#333;}#remark-mermaid-0 .label text,#remark-mermaid-0 span{fill:#000000;color:#000000;}#remark-mermaid-0 .node rect,#remark-mermaid-0 .node circle,#remark-mermaid-0 .node ellipse,#remark-mermaid-0 .node polygon,#remark-mermaid-0 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#remark-mermaid-0 .node .label{text-align:center;}#remark-mermaid-0 .node.clickable{cursor:pointer;}#remark-mermaid-0 .arrowheadPath{fill:#333333;}#remark-mermaid-0 .edgePath .path{stroke:#666;stroke-width:2.0px;}#remark-mermaid-0 .flowchart-link{stroke:#666;fill:none;}#remark-mermaid-0 .edgeLabel{background-color:white;text-align:center;}#remark-mermaid-0 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#remark-mermaid-0 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#remark-mermaid-0 .cluster text{fill:#333;}#remark-mermaid-0 .cluster span{color:#333;}#remark-mermaid-0 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#remark-mermaid-0 .node rect{fill:#fff;}#remark-mermaid-0 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker orient="auto" markerHeight="12" markerWidth="12" markerUnits="userSpaceOnUse" refY="5" refX="10" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerHeight="12" markerWidth="12" markerUnits="userSpaceOnUse" refY="5" refX="0" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="compiler" class="cluster default"><rect height="230.703125" width="1683.828125" y="0" x="428.5625" ry="0" rx="0" style=""></rect><g transform="translate(1239.0078125, 5)" class="cluster-label"><foreignObject height="19" width="62.9375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">compiler</span></div></foreignObject></g></g><g id="js文件" class="cluster default"><rect height="176.6015625" width="417.53125" y="34.1015625" x="1285" ry="0" rx="0" style=""></rect><g transform="translate(1471.59375, 39.1015625)" class="cluster-label"><foreignObject height="21" width="44.34375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">js文件</span></div></foreignObject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" id="L-A-B-0" d="M58.765625,130.65234375L62.932291666666664,130.65234375C67.09895833333333,130.65234375,75.43229166666667,130.65234375,83.765625,130.65234375C92.09895833333333,130.65234375,100.43229166666667,130.65234375,104.59895833333333,130.65234375L108.765625,130.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-B LE-C" id="L-B-C-0" d="M218.625,130.65234375L222.79166666666666,130.65234375C226.95833333333334,130.65234375,235.29166666666666,130.65234375,243.625,130.65234375C251.95833333333334,130.65234375,260.2916666666667,130.65234375,264.4583333333333,130.65234375L268.625,130.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" id="L-C-D-0" d="M378.5625,130.65234375L382.7291666666667,130.65234375C386.8958333333333,130.65234375,395.2291666666667,130.65234375,403.5625,130.65234375C411.8958333333333,130.65234375,420.2291666666667,130.65234375,428.5625,130.65234375C436.8958333333333,130.65234375,445.2291666666667,130.65234375,449.3958333333333,130.65234375L453.5625,130.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-D LE-E" id="L-D-E-0" d="M577.65625,130.65234375L589.1197916666666,130.65234375C600.5833333333334,130.65234375,623.5104166666666,130.65234375,646.4375,130.65234375C669.3645833333334,130.65234375,692.2916666666666,130.65234375,703.7552083333334,130.65234375L715.21875,130.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-E LE-F" id="L-E-F-0" d="M781.3772843977039,112.65234375L787.68419533142,108.39388020833333C793.991106265136,104.13541666666667,806.604928132568,95.61848958333333,817.0785057329507,91.36002604166667C827.5520833333334,87.1015625,835.8854166666666,87.1015625,840.0520833333334,87.1015625L844.21875,87.1015625"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-F LE-JSFILE" id="L-F-JSFILE-0" d="M984.796875,87.1015625L988.9635416666666,87.1015625C993.1302083333334,87.1015625,1001.4635416666666,87.1015625,1009.8802083333334,87.18489583333333C1018.296875,87.26822916666667,1026.796875,87.43489583333333,1031.046875,87.51822916666667L1035.296875,87.6015625"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-JSFILE LE-G" id="L-JSFILE-G-0" d="M1139.5,87.6015625L1151.5833333333333,87.51822916666667C1163.6666666666667,87.43489583333333,1187.8333333333333,87.26822916666667,1212.0833333333333,87.18489583333333C1236.3333333333333,87.1015625,1260.6666666666667,87.1015625,1277,87.1015625C1293.3333333333333,87.1015625,1301.6666666666667,87.1015625,1305.8333333333333,87.1015625L1310,87.1015625"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-G LE-H" id="L-G-H-0" d="M1351.421875,87.1015625L1355.5885416666667,87.1015625C1359.7552083333333,87.1015625,1368.0885416666667,87.1015625,1376.421875,87.1015625C1384.7552083333333,87.1015625,1393.0885416666667,87.1015625,1397.2552083333333,87.1015625L1401.421875,87.1015625"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-H LE-J" id="L-H-J-0" d="M1548.53125,87.1015625L1552.6979166666667,87.1015625C1556.8645833333333,87.1015625,1565.1979166666667,87.1015625,1575.6714942670494,91.36002604166667C1586.145071867432,95.61848958333333,1598.758893734864,104.13541666666667,1605.0658046685803,108.39388020833333L1611.3727156022962,112.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-J LE-I" id="L-J-I-0" d="M1677.53125,130.65234375L1681.6979166666667,130.65234375C1685.8645833333333,130.65234375,1694.1979166666667,130.65234375,1702.53125,130.65234375C1710.8645833333333,130.65234375,1719.1979166666667,130.65234375,1727.53125,130.65234375C1735.8645833333333,130.65234375,1744.1979166666667,130.65234375,1748.3645833333333,130.65234375L1752.53125,130.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-J LE-E" id="L-J-E-0" d="M1611.3727156022962,148.65234375L1605.0658046685803,152.91080729166666C1598.758893734864,157.16927083333334,1586.145071867432,165.68619791666666,1563.412379683716,169.94466145833334C1540.6796875,174.203125,1507.828125,174.203125,1474.9765625,174.203125C1442.125,174.203125,1409.2734375,174.203125,1385.2291666666667,174.203125C1361.1848958333333,174.203125,1345.9479166666667,174.203125,1330.7109375,174.203125C1315.4739583333333,174.203125,1300.2369791666667,174.203125,1280.4518229166667,174.203125C1260.6666666666667,174.203125,1236.3333333333333,174.203125,1203.31640625,174.203125C1170.2994791666667,174.203125,1128.5989583333333,174.203125,1094.8984375,174.203125C1061.1979166666667,174.203125,1035.4973958333333,174.203125,1006.765625,174.203125C978.0338541666666,174.203125,946.2708333333334,174.203125,914.5078125,174.203125C882.7447916666666,174.203125,850.9817708333334,174.203125,828.7933494829507,169.94466145833334C806.604928132568,165.68619791666666,793.991106265136,157.16927083333334,787.6841953314198,152.91080729166666L781.3772843977039,148.65234375"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-I LE-K" id="L-I-K-0" d="M1831.53125,130.65234375L1846.26953125,130.65234375C1861.0078125,130.65234375,1890.484375,130.65234375,1919.9609375,130.65234375C1949.4375,130.65234375,1978.9140625,130.65234375,1993.65234375,130.65234375L2008.390625,130.65234375"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g transform="translate(646.4375, 130.65234375)" class="edgeLabel"><g transform="translate(-43.78125, -9.5)" class="label"><foreignObject height="19" width="87.5625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel">config.entry</span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g transform="translate(1212, 87.1015625)" class="edgeLabel"><g transform="translate(-8, -10.5)" class="label"><foreignObject height="21" width="16"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel">是</span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g transform="translate(1212, 174.203125)" class="edgeLabel"><g transform="translate(-48, -10.5)" class="label"><foreignObject height="21" width="96"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel">依赖文件路径</span></div></foreignObject></g></g><g transform="translate(1919.9609375, 130.65234375)" class="edgeLabel"><g transform="translate(-63.4296875, -10.5)" class="label"><foreignObject height="21" width="126.859375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel">混入webpack模板</span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(515.609375, 130.65234375)" id="flowchart-D-59" class="node default default"><rect height="36" width="124.09375" y="-18" x="-62.046875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-54.546875, -10.5)" style="" class="label"><foreignObject height="21" width="109.09375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">执行copiler.run</span></div></foreignObject></g></g><g transform="translate(754.71875, 130.65234375)" id="flowchart-E-60" class="node default default"><rect height="36" width="79" y="-18" x="-39.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-32, -10.5)" style="" class="label"><foreignObject height="21" width="64"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">读取文件</span></div></foreignObject></g></g><g transform="translate(914.5078125, 87.1015625)" id="flowchart-F-61" class="node default default"><rect height="36" width="140.578125" y="-18" x="-70.2890625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-62.7890625, -10.5)" style="" class="label"><foreignObject height="21" width="125.578125"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">对应的loader处理</span></div></foreignObject></g></g><g transform="translate(1086.8984375, 87.1015625)" id="flowchart-JSFILE-62" class="node default default"><polygon style="" transform="translate(-52.1015625,52.1015625)" class="label-container" points="52.1015625,0 104.203125,-52.1015625 52.1015625,-104.203125 0,-52.1015625"></polygon><g transform="translate(-26.6015625, -10.5)" style="" class="label"><foreignObject height="21" width="53.203125"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">JS文件?</span></div></foreignObject></g></g><g transform="translate(1792.03125, 130.65234375)" id="flowchart-I-66" class="node default default"><rect height="36" width="79" y="-18" x="-39.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-32, -10.5)" style="" class="label"><foreignObject height="21" width="64"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">生成代码</span></div></foreignObject></g></g><g transform="translate(2047.890625, 130.65234375)" id="flowchart-K-67" class="node default default"><rect height="36" width="79" y="-18" x="-39.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-32, -10.5)" style="" class="label"><foreignObject height="21" width="64"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">写入文件</span></div></foreignObject></g></g><g transform="translate(1330.7109375, 87.1015625)" id="flowchart-G-63" class="node default default"><rect height="34" width="41.421875" y="-17" x="-20.7109375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-13.2109375, -9.5)" style="" class="label"><foreignObject height="19" width="26.421875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">AST</span></div></foreignObject></g></g><g transform="translate(1474.9765625, 87.1015625)" id="flowchart-H-64" class="node default default"><rect height="36" width="147.109375" y="-18" x="-73.5546875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-66.0546875, -10.5)" style="" class="label"><foreignObject height="21" width="132.109375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">替换关键字require</span></div></foreignObject></g></g><g transform="translate(1638.03125, 130.65234375)" id="flowchart-J-65" class="node default default"><rect height="36" width="79" y="-18" x="-39.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-32, -10.5)" style="" class="label"><foreignObject height="21" width="64"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">遍历依赖</span></div></foreignObject></g></g><g transform="translate(29.3828125, 130.65234375)" id="flowchart-A-56" class="node default default"><rect height="34" width="58.765625" y="-17" x="-29.3828125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-21.8828125, -9.5)" style="" class="label"><foreignObject height="19" width="43.765625"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">config</span></div></foreignObject></g></g><g transform="translate(163.6953125, 130.65234375)" id="flowchart-B-57" class="node default default"><rect height="36" width="109.859375" y="-18" x="-54.9296875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-47.4296875, -10.5)" style="" class="label"><foreignObject height="21" width="94.859375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">webpack函数</span></div></foreignObject></g></g><g transform="translate(323.59375, 130.65234375)" id="flowchart-C-58" class="node default default"><rect height="36" width="109.9375" y="-18" x="-54.96875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-47.46875, -10.5)" style="" class="label"><foreignObject height="21" width="94.9375"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">返回compiler</span></div></foreignObject></g></g></g></g></g></svg></p>
+<pre class="grvsc-container dark-default-dark" data-language="js" data-index="4"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">fs</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;fs&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">path</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;path&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">parser</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;@babel/parser&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">traverser</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;@babel/traverse&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">t</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;@babel/types&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">generate</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&quot;babel-generator&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">class</span><span class="mtk1"> </span><span class="mtk10">Compiler</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">constructor</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1"> = </span><span class="mtk12">options</span><span class="mtk1"> || {};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 保存编译过的module</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">modules</span><span class="mtk1"> = </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">Set</span><span class="mtk1">();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">run</span><span class="mtk1">(</span><span class="mtk12">callback</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">entryModule</span><span class="mtk1"> = </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">build</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">join</span><span class="mtk1">(</span><span class="mtk12">process</span><span class="mtk1">.</span><span class="mtk11">cwd</span><span class="mtk1">(), </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">entry</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    );</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">entryChunk</span><span class="mtk1"> = </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">buildChunk</span><span class="mtk1">(</span><span class="mtk8">&quot;entry&quot;</span><span class="mtk1">, </span><span class="mtk12">entryModule</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">generateFile</span><span class="mtk1">(</span><span class="mtk12">entryChunk</span><span class="mtk1">, </span><span class="mtk12">callback</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">build</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">let</span><span class="mtk1"> </span><span class="mtk12">originCode</span><span class="mtk1"> = </span><span class="mtk12">fs</span><span class="mtk1">.</span><span class="mtk11">readFileSync</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">originCode</span><span class="mtk1"> = </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">dealWidthLoader</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">, </span><span class="mtk12">originCode</span><span class="mtk1">.</span><span class="mtk11">toString</span><span class="mtk1">());</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">dealDependencies</span><span class="mtk1">(</span><span class="mtk12">originCode</span><span class="mtk1">, </span><span class="mtk12">modulePath</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk3">// 将文件源码交给对应的loader</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">dealWidthLoader</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">, </span><span class="mtk12">originCode</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">module</span><span class="mtk1"> &amp;&amp; </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">module</span><span class="mtk1">.</span><span class="mtk12">rules</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      [...</span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">module</span><span class="mtk1">.</span><span class="mtk12">rules</span><span class="mtk1">].</span><span class="mtk11">reverse</span><span class="mtk1">().</span><span class="mtk11">forEach</span><span class="mtk1">((</span><span class="mtk12">rule</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk12">rule</span><span class="mtk1">.</span><span class="mtk12">test</span><span class="mtk1">.</span><span class="mtk11">test</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">)) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">loaders</span><span class="mtk1"> = [...</span><span class="mtk12">rule</span><span class="mtk1">.</span><span class="mtk12">use</span><span class="mtk1">].</span><span class="mtk11">reverse</span><span class="mtk1">();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk12">loaders</span><span class="mtk1">.</span><span class="mtk11">forEach</span><span class="mtk1">((</span><span class="mtk12">loader</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> (</span><span class="mtk12">originCode</span><span class="mtk1"> = </span><span class="mtk11">loader</span><span class="mtk1">(</span><span class="mtk12">originCode</span><span class="mtk1">)));</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      });</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">originCode</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk3">// 根据ast 处理依赖</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">dealDependencies</span><span class="mtk1">(</span><span class="mtk12">code</span><span class="mtk1">, </span><span class="mtk12">modulePath</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">fullPath</span><span class="mtk1"> = </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">relative</span><span class="mtk1">(</span><span class="mtk12">process</span><span class="mtk1">.</span><span class="mtk11">cwd</span><span class="mtk1">(), </span><span class="mtk12">modulePath</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 创建模块对象</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">module</span><span class="mtk1"> = {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">id:</span><span class="mtk1"> </span><span class="mtk12">fullPath</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">dependencies:</span><span class="mtk1"> [],</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    };</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 这里使用@babel/parser提供的语法树解析方法</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// https://babel.docschina.org/docs/en/babel-parser/</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">ast</span><span class="mtk1"> = </span><span class="mtk12">parser</span><span class="mtk1">.</span><span class="mtk11">parse</span><span class="mtk1">(</span><span class="mtk12">code</span><span class="mtk1">, {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">sourceType:</span><span class="mtk1"> </span><span class="mtk8">&quot;module&quot;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    });</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 深度遍历优先 遍历语法树</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">traverser</span><span class="mtk1">.</span><span class="mtk11">default</span><span class="mtk1">(</span><span class="mtk12">ast</span><span class="mtk1">, {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk3">// 对语法树中特定的节点进行操作 参考@babel/types （特定节点类型）</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk3">// CallExpression 特定节点</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk11">CallExpression</span><span class="mtk12">:</span><span class="mtk1"> (</span><span class="mtk12">nodePath</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">node</span><span class="mtk1"> = </span><span class="mtk12">nodePath</span><span class="mtk1">.</span><span class="mtk12">node</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk12">node</span><span class="mtk1">.</span><span class="mtk12">callee</span><span class="mtk1">.</span><span class="mtk12">name</span><span class="mtk1"> === </span><span class="mtk8">&quot;require&quot;</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">requirePath</span><span class="mtk1"> = </span><span class="mtk12">node</span><span class="mtk1">.</span><span class="mtk12">arguments</span><span class="mtk1">[</span><span class="mtk7">0</span><span class="mtk1">].</span><span class="mtk12">value</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">moduleDirName</span><span class="mtk1"> = </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">dirname</span><span class="mtk1">(</span><span class="mtk12">modulePath</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">fullPath</span><span class="mtk1"> = </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">relative</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk12">__dirname</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">join</span><span class="mtk1">(</span><span class="mtk12">moduleDirName</span><span class="mtk1">, </span><span class="mtk12">requirePath</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          );</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// t.identifier创建__webpack_require__标识符</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// 赋值给node.calllee</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// 替换掉了原来的 require</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk12">node</span><span class="mtk1">.</span><span class="mtk12">callee</span><span class="mtk1"> = </span><span class="mtk12">t</span><span class="mtk1">.</span><span class="mtk11">identifier</span><span class="mtk1">(</span><span class="mtk8">&quot;__webpack_require__&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// 将依赖的路径修改为以当前路径行为基准</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// t.stringLitera 创建了string类型</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk12">node</span><span class="mtk1">.</span><span class="mtk12">arguments</span><span class="mtk1"> = [</span><span class="mtk12">t</span><span class="mtk1">.</span><span class="mtk11">stringLiteral</span><span class="mtk1">(</span><span class="mtk12">fullPath</span><span class="mtk1">)];</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk3">// 查看这个module是否已经被处理过</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">exitModule</span><span class="mtk1"> = [...</span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">modules</span><span class="mtk1">].</span><span class="mtk11">find</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            (</span><span class="mtk12">item</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk12">item</span><span class="mtk1">.</span><span class="mtk12">id</span><span class="mtk1"> === </span><span class="mtk12">fullPath</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          );</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          </span><span class="mtk15">if</span><span class="mtk1"> (!</span><span class="mtk12">exitModule</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk12">dependencies</span><span class="mtk1">.</span><span class="mtk11">push</span><span class="mtk1">(</span><span class="mtk12">fullPath</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">          }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    });</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 根据新的ast生成代码</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">_code</span><span class="mtk1"> = </span><span class="mtk12">generate</span><span class="mtk1">.</span><span class="mtk11">default</span><span class="mtk1">(</span><span class="mtk12">ast</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 保存最新的代码</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk12">_source</span><span class="mtk1"> = </span><span class="mtk12">_code</span><span class="mtk1">.</span><span class="mtk12">code</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 遍历所有依赖 并保存到modules</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk12">dependencies</span><span class="mtk1">.</span><span class="mtk11">forEach</span><span class="mtk1">((</span><span class="mtk12">dep</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">depModule</span><span class="mtk1"> = </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">build</span><span class="mtk1">(</span><span class="mtk12">dep</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">modules</span><span class="mtk1">.</span><span class="mtk11">add</span><span class="mtk1">(</span><span class="mtk12">depModule</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    });</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">// 返回当前module</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk10">module</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">buildChunk</span><span class="mtk1">(</span><span class="mtk12">entryName</span><span class="mtk1">, </span><span class="mtk12">entryModule</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">name:</span><span class="mtk1"> </span><span class="mtk12">entryName</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">entryModule</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">modules:</span><span class="mtk1"> </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">modules</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    };</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">getCode</span><span class="mtk1">(</span><span class="mtk12">entryChunk</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk8">`</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">(() =&gt; {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  var __webpack_modules__ = {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    </span><span class="mtk4">${</span><span class="mtk10">Array</span><span class="mtk1">.</span><span class="mtk11">from</span><span class="mtk1">(</span><span class="mtk12">entryChunk</span><span class="mtk1">.</span><span class="mtk12">modules</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      .</span><span class="mtk11">map</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        (</span><span class="mtk12">module</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk8">`</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      &quot;</span><span class="mtk4">${</span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk10">id</span><span class="mtk4">}</span><span class="mtk8">&quot;: (module, __unused_webpack_exports, __webpack__require__) =&gt; {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">        </span><span class="mtk4">${</span><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk12">_source</span><span class="mtk4">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    `</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      )</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      .</span><span class="mtk11">join</span><span class="mtk1">(</span><span class="mtk8">&quot;,&quot;</span><span class="mtk1">)</span><span class="mtk4">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  var __webpack_module_cache__ = {};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  function __webpack_require__(moduleId) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    var cachedModule = __webpack_module_cache__[moduleId];</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    if(cachedModule !== undefined) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      return cachedModule.exports</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    var module = (__webpack_module_cache__[moduleId] = {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      exports: {}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    __webpack_modules__[moduleId](</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      module,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      module.exports,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">      __webpack_require__</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    );</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    return module.exports;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  var __webpack_exports__ = {};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  (() =&gt; {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    </span><span class="mtk4">${</span><span class="mtk12">entryChunk</span><span class="mtk1">.</span><span class="mtk12">entryModule</span><span class="mtk1">.</span><span class="mtk12">_source</span><span class="mtk4">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">  })();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">})();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk8">    `</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">generateFile</span><span class="mtk1">(</span><span class="mtk12">entryChunk</span><span class="mtk1">, </span><span class="mtk12">callback</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">code</span><span class="mtk1"> = </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk11">getCode</span><span class="mtk1">(</span><span class="mtk12">entryChunk</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> (!</span><span class="mtk12">fs</span><span class="mtk1">.</span><span class="mtk11">existsSync</span><span class="mtk1">(</span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">output</span><span class="mtk1">.</span><span class="mtk12">path</span><span class="mtk1">)) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">fs</span><span class="mtk1">.</span><span class="mtk11">mkdirSync</span><span class="mtk1">(</span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">output</span><span class="mtk1">.</span><span class="mtk12">path</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">fs</span><span class="mtk1">.</span><span class="mtk11">writeFile</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">path</span><span class="mtk1">.</span><span class="mtk11">join</span><span class="mtk1">(</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">output</span><span class="mtk1">.</span><span class="mtk12">path</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk4">this</span><span class="mtk1">.</span><span class="mtk12">options</span><span class="mtk1">.</span><span class="mtk12">output</span><span class="mtk1">.</span><span class="mtk12">filename</span><span class="mtk1">.</span><span class="mtk11">replace</span><span class="mtk1">(</span><span class="mtk8">&quot;[name]&quot;</span><span class="mtk1">, </span><span class="mtk12">entryChunk</span><span class="mtk1">.</span><span class="mtk12">name</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      ),</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk12">code</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      (</span><span class="mtk12">err</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk12">callback</span><span class="mtk1"> &amp;&amp; </span><span class="mtk11">callback</span><span class="mtk1">(</span><span class="mtk12">err</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    );</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">webpack</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">compiler</span><span class="mtk1"> = </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">Compiler</span><span class="mtk1">(</span><span class="mtk12">options</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">compiler</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk10">module</span><span class="mtk1">.</span><span class="mtk10">exports</span><span class="mtk1"> = </span><span class="mtk12">webpack</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span></code></pre>
+<style class="grvsc-styles">
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
   }
-
-  run(callback) {
-    const entryModule = this.build(
-      path.join(process.cwd(), this.options.entry)
-    );
-    const entryChunk = this.buildChunk("entry", entryModule);
-    this.generateFile(entryChunk, callback);
+  
+  .grvsc-code {
+    display: table;
   }
-
-  build(modulePath) {
-    let originCode = fs.readFileSync(modulePath);
-    originCode = this.dealWidthLoader(modulePath, originCode.toString());
-    return this.dealDependencies(originCode, modulePath);
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
   }
-
-  // 将文件源码交给对应的loader
-  dealWidthLoader(modulePath, originCode) {
-    if (this.options.module &#x26;&#x26; this.options.module.rules) {
-      [...this.options.module.rules].reverse().forEach((rule) => {
-        if (rule.test.test(modulePath)) {
-          const loaders = [...rule.use].reverse();
-          loaders.forEach((loader) => (originCode = loader(originCode)));
-        }
-      });
-    }
-
-    return originCode;
+  
+  .grvsc-line > * {
+    position: relative;
   }
-
-  // 根据ast 处理依赖
-  dealDependencies(code, modulePath) {
-    const fullPath = path.relative(process.cwd(), modulePath);
-    // 创建模块对象
-    const module = {
-      id: fullPath,
-      dependencies: [],
-    };
-
-    // 这里使用@babel/parser提供的语法树解析方法
-    // https://babel.docschina.org/docs/en/babel-parser/
-    const ast = parser.parse(code, {
-      sourceType: "module",
-    });
-
-    // 深度遍历优先 遍历语法树
-    traverser.default(ast, {
-      // 对语法树中特定的节点进行操作 参考@babel/types （特定节点类型）
-      // CallExpression 特定节点
-      CallExpression: (nodePath) => {
-        const node = nodePath.node;
-        if (node.callee.name === "require") {
-          const requirePath = node.arguments[0].value;
-
-          const moduleDirName = path.dirname(modulePath);
-          const fullPath = path.relative(
-            __dirname,
-            path.join(moduleDirName, requirePath)
-          );
-
-          // t.identifier创建__webpack_require__标识符
-          // 赋值给node.calllee
-          // 替换掉了原来的 require
-          node.callee = t.identifier("__webpack_require__");
-
-          // 将依赖的路径修改为以当前路径行为基准
-          // t.stringLitera 创建了string类型
-          node.arguments = [t.stringLiteral(fullPath)];
-
-          // 查看这个module是否已经被处理过
-          const exitModule = [...this.modules].find(
-            (item) => item.id === fullPath
-          );
-          if (!exitModule) {
-            module.dependencies.push(fullPath);
-          }
-        }
-      },
-    });
-
-    // 根据新的ast生成代码
-    const _code = generate.default(ast);
-    // 保存最新的代码
-    module._source = _code.code;
-
-    // 遍历所有依赖 并保存到modules
-    module.dependencies.forEach((dep) => {
-      const depModule = this.build(dep);
-      this.modules.add(depModule);
-    });
-    // 返回当前module
-    return module;
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
   }
-
-  buildChunk(entryName, entryModule) {
-    return {
-      name: entryName,
-      entryModule,
-      modules: this.modules,
-    };
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
-
-  getCode(entryChunk) {
-    return `
-(() => {
-  var __webpack_modules__ = {
-    ${Array.from(entryChunk.modules)
-      .map(
-        (module) => `
-      "${module.id}": (module, __unused_webpack_exports, __webpack__require__) => {
-        ${module._source}
-      }
-    `
-      )
-      .join(",")}
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
   }
-
-  var __webpack_module_cache__ = {};
-
-  function __webpack_require__(moduleId) {
-    var cachedModule = __webpack_module_cache__[moduleId];
-    if(cachedModule !== undefined) {
-      return cachedModule.exports
-    }
-
-    var module = (__webpack_module_cache__[moduleId] = {
-      exports: {}
-    })
-
-    __webpack_modules__[moduleId](
-      module,
-      module.exports,
-      __webpack_require__
-    );
-
-    return module.exports;
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
   }
-
-  var __webpack_exports__ = {};
-
-  (() => {
-    ${entryChunk.entryModule._source}
-  })();
-})();
-    `;
+  
+  .grvsc-source:empty::after {
+    content: ' ';
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
   }
-  generateFile(entryChunk, callback) {
-    const code = this.getCode(entryChunk);
-
-    if (!fs.existsSync(this.options.output.path)) {
-      fs.mkdirSync(this.options.output.path);
-    }
-    fs.writeFile(
-      path.join(
-        this.options.output.path,
-        this.options.output.filename.replace("[name]", entryChunk.name)
-      ),
-      code,
-      (err) => callback &#x26;&#x26; callback(err)
-    );
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
   }
-}
-
-function webpack(options) {
-  const compiler = new Compiler(options);
-  return compiler;
-}
-
-module.exports = webpack;
-
-</code></pre></div><div><div class=""><div class="ant-anchor-wrapper" style="max-height:100vh;position:fixed;left:0;top:100px;width:150px"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div></div></div></div></div></main><footer style="margin-top:var(--space-5);font-size:var(--font-sm)">© <!-- -->2022<!-- --> · Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/other/mini-webpack/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting > .grvsc-code > .grvsc-line::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .dark-default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .dark-default-dark .mtk3 { color: #6A9955; }
+  .dark-default-dark .mtk11 { color: #DCDCAA; }
+  .dark-default-dark .mtk1 { color: #D4D4D4; }
+  .dark-default-dark .mtk8 { color: #CE9178; }
+  .dark-default-dark .mtk10 { color: #4EC9B0; }
+  .dark-default-dark .mtk4 { color: #569CD6; }
+  .dark-default-dark .mtk12 { color: #9CDCFE; }
+  .dark-default-dark .mtk15 { color: #C586C0; }
+  .dark-default-dark .mtk7 { color: #B5CEA8; }
+  .dark-default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+</style></div><div><div class=""><div class="ant-anchor-wrapper" style="max-height:100vh;position:fixed;left:0;top:100px;width:150px"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div></div></div></div></div></main><footer style="margin-top:var(--space-5);font-size:var(--font-sm)">© <!-- -->2022<!-- --> · Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/other/mini-webpack/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
-            window.___chunkMapping="{\"app\":[\"/app-300d0d00742d71594f3d.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-db45316f3b099951c699.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-49bd281c5c6955b61ae8.js\"],\"component---src-templates-blog-jsx\":[\"/component---src-templates-blog-jsx-b5ed0cdfc54bdf6436ba.js\"]}";
+            window.___chunkMapping="{\"app\":[\"/app-f4cc8691acd16a226892.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-db45316f3b099951c699.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-49bd281c5c6955b61ae8.js\"],\"component---src-templates-blog-jsx\":[\"/component---src-templates-blog-jsx-b5ed0cdfc54bdf6436ba.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="ea7f83d874def75cfc12";</script><script src="/awe/webpack-runtime-10184f5532fb70192189.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-300d0d00742d71594f3d.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="9c697b784a75e929b929";</script><script src="/awe/webpack-runtime-10184f5532fb70192189.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-f4cc8691acd16a226892.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

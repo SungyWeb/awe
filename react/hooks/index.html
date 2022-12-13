@@ -21,100 +21,201 @@
 <h3>useEffect</h3>
 <p><code>React</code>中有两个重要概念 <code>Rendering Code</code> 和 <code>Event Handlers</code></p>
 <p><code>Rendering Code</code>是开发者编写的组件渲染逻辑，最终会返回一段<code>JSX</code>，它应该是不带副作用的纯函数</p>
-<pre><code class="language-jsx">function App() {
-  const [name, updateName] = useState("sungy")
-
-  return &#x3C;div>{name}&#x3C;/div>
-}
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="0"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">App</span><span class="mtk1">() {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> [</span><span class="mtk12">name</span><span class="mtk1">, </span><span class="mtk12">updateName</span><span class="mtk1">] = </span><span class="mtk11">useState</span><span class="mtk1">(</span><span class="mtk8">&quot;sungy&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk17">&lt;</span><span class="mtk4">div</span><span class="mtk17">&gt;</span><span class="mtk4">{</span><span class="mtk12">name</span><span class="mtk4">}</span><span class="mtk17">&lt;/</span><span class="mtk4">div</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <p><code>Event Handlers</code>是事件处理函数，可以包含副作用。如下面的<code>changeName</code>方法就是属于<code>Event Handlers</code></p>
-<pre><code class="language-jsx">function App() {
-  const [name, updateName] = useState("sungy")
-
-  const changeName = () => updateName("zhangsan")
-
-  return &#x3C;div>{name}&#x3C;/div>
-}
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="1"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">App</span><span class="mtk1">() {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> [</span><span class="mtk12">name</span><span class="mtk1">, </span><span class="mtk12">updateName</span><span class="mtk1">] = </span><span class="mtk11">useState</span><span class="mtk1">(</span><span class="mtk8">&quot;sungy&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk11">changeName</span><span class="mtk1"> = () </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk11">updateName</span><span class="mtk1">(</span><span class="mtk8">&quot;zhangsan&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk17">&lt;</span><span class="mtk4">div</span><span class="mtk17">&gt;</span><span class="mtk4">{</span><span class="mtk12">name</span><span class="mtk4">}</span><span class="mtk17">&lt;/</span><span class="mtk4">div</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <blockquote>
 <p>副作用：数据获取，设置订阅以及手动更改 React 组件中的 DOM 都属于副作用</p>
 </blockquote>
 <p>但是并不是所有的副作用都可以放到<code>Event Handlers</code>中，比如视图渲染后的数据请求、状态改变后的数据请求</p>
 <p>考虑一下默认加载一个列表，点击分页后发起新的请求场景，我们需要组件加载后去发起请求</p>
-<pre><code class="language-jsx">const [pageIndex, setPageIndex] = useState(1)
-useEffect(() => {
-  fetch("xxx")
-}, [pageIndex])
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="2"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> [</span><span class="mtk12">pageIndex</span><span class="mtk1">, </span><span class="mtk12">setPageIndex</span><span class="mtk1">] = </span><span class="mtk11">useState</span><span class="mtk1">(</span><span class="mtk7">1</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">useEffect</span><span class="mtk1">(() </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">fetch</span><span class="mtk1">(</span><span class="mtk8">&quot;xxx&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}, [</span><span class="mtk12">pageIndex</span><span class="mtk1">])</span></span></span></code></pre>
 <p>现在来思考一下，我们的需求是：</p>
 <ul>
 <li><code>pageIndex</code>变化，接下来发起请求</li>
 <li>用户点击页码需要重新获取数据，请求依赖<code>pageIndex</code>为参数</li>
 </ul>
 <p>如果是第二种，那么这是用户行为触发的副作用，相关逻辑应该放到<code>Event Handlers</code>中处理</p>
-<pre><code class="language-jsx">const [pageIndex, setPageIndex] = useState(1)
-useEffect(() => {
-  fetch("xxx")
-}, [])
-
-const onPageIndexChange = pageIdx => fetch("xxx")
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="3"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> [</span><span class="mtk12">pageIndex</span><span class="mtk1">, </span><span class="mtk12">setPageIndex</span><span class="mtk1">] = </span><span class="mtk11">useState</span><span class="mtk1">(</span><span class="mtk7">1</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">useEffect</span><span class="mtk1">(() </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">fetch</span><span class="mtk1">(</span><span class="mtk8">&quot;xxx&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}, [])</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk11">onPageIndexChange</span><span class="mtk1"> = </span><span class="mtk12">pageIdx</span><span class="mtk1"> </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk11">fetch</span><span class="mtk1">(</span><span class="mtk8">&quot;xxx&quot;</span><span class="mtk1">)</span></span></span></code></pre>
 <p>这样<code>pageIndex</code>的状态与发送请求之间不再有因果关系，后续对<code>pageIndex</code>的修改不会有<strong>无意间触发请求</strong>的顾虑；同样随着业务逻辑复杂，不会导致在<code>useEffect</code>的依赖中添加杂乱的变量，使逻辑无法调试、追踪</p>
 <p>当我们编写组件时，应尽量保证为纯函数。对于组件中的副作用，应明确副作用是视图渲染后主动触发的还是用户行为触发的，前者应该在<code>useEffect</code>中处理， 后者应该放到<code>Event Handlers</code>中处理</p>
 <h3>useRef</h3>
 <p>我们知道 Dom 元素是由 React 创建的，所以 Dom 元素的增删改都是 React 的控制范围。</p>
 <p>当我们用 ref 指向一个节点，执行<code>ref.current</code>的<code>fouce</code>、<code>blur</code>、<code>scrollIntoView</code>、<code>getBoundingClientRect</code> 这些方法时，虽然也是操作了 dom，但是这些在 React 控制范围外；但是当我们执行<code>remove</code>、<code>appendChild</code>等方法时，这就是 React 的控制范围内了，React 期望开发者能够通过 React 来控制，而不是调用原生的 api，这种情况可以称之为<strong>失控</strong></p>
-<pre><code class="language-jsx">function App() {
-  const [show, setShow] = useState(true)
-  const ref = useRef(null)
-
-  return (
-    &#x3C;div>
-      &#x3C;button onClick={() => setShow(false)}>btn1&#x3C;/button>
-      &#x3C;button onClick={() => ref.current.remove()}>btn2&#x3C;/button>
-      {show &#x26;&#x26; &#x3C;p ref={ref}>&#x3C;/p>}
-    &#x3C;/div>
-  )
-}
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="4"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">App</span><span class="mtk1">() {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> [</span><span class="mtk12">show</span><span class="mtk1">, </span><span class="mtk12">setShow</span><span class="mtk1">] = </span><span class="mtk11">useState</span><span class="mtk1">(</span><span class="mtk4">true</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1"> = </span><span class="mtk11">useRef</span><span class="mtk1">(</span><span class="mtk4">null</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> (</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk17">&lt;</span><span class="mtk4">div</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk17">&lt;</span><span class="mtk4">button</span><span class="mtk1"> </span><span class="mtk12">onClick</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk1">() </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk11">setShow</span><span class="mtk1">(</span><span class="mtk4">false</span><span class="mtk1">)</span><span class="mtk4">}</span><span class="mtk17">&gt;</span><span class="mtk1">btn1</span><span class="mtk17">&lt;/</span><span class="mtk4">button</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk17">&lt;</span><span class="mtk4">button</span><span class="mtk1"> </span><span class="mtk12">onClick</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk1">() </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1">.</span><span class="mtk12">current</span><span class="mtk1">.</span><span class="mtk11">remove</span><span class="mtk1">()</span><span class="mtk4">}</span><span class="mtk17">&gt;</span><span class="mtk1">btn2</span><span class="mtk17">&lt;/</span><span class="mtk4">button</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk4">{</span><span class="mtk12">show</span><span class="mtk1"> &amp;&amp; </span><span class="mtk17">&lt;</span><span class="mtk4">p</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk12">ref</span><span class="mtk4">}</span><span class="mtk17">&gt;&lt;/</span><span class="mtk4">p</span><span class="mtk17">&gt;</span><span class="mtk4">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk17">&lt;/</span><span class="mtk4">div</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  )</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <p><code>btn1</code>通过 React 来移除<code>p</code>元素，<code>btn2</code>通过原生 js 来移除。如果先点<code>btn1</code>再点<code>btn2</code>，那么就会报错。</p>
 <p>这就是 ref 操作 dom 造成失控的情况。</p>
 <p>为了将这种失控控制在单个组件内，React 默认情况下不允许跨组件传递 ref。</p>
-<pre><code class="language-jsx">function Input(props) {
-  return &#x3C;input {...props} />
-}
-
-function Form() {
-  const inputRef = useRef()
-  const handleClick = () => {
-    inputRef.current.force()  // btn点击后会报错
-  }
-  return (
-    &#x3C;>
-      &#x3C;button onClick={handleClick}>btn&#x3C;/button>
-      &#x3C;Input ref={inputRef} />
-    &#x3C;/Input>
-  )
-}
-</code></pre>
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="5"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">Input</span><span class="mtk1">(</span><span class="mtk12">props</span><span class="mtk1">) {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk17">&lt;</span><span class="mtk4">input</span><span class="mtk1"> </span><span class="mtk4">{</span><span class="mtk1">...</span><span class="mtk12">props</span><span class="mtk4">}</span><span class="mtk1"> </span><span class="mtk17">/&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">function</span><span class="mtk1"> </span><span class="mtk11">Form</span><span class="mtk1">() {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">inputRef</span><span class="mtk1"> = </span><span class="mtk11">useRef</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk11">handleClick</span><span class="mtk1"> = () </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">inputRef</span><span class="mtk1">.</span><span class="mtk12">current</span><span class="mtk1">.</span><span class="mtk11">force</span><span class="mtk1">()  </span><span class="mtk3">// btn点击后会报错</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> (</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk17">&lt;&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk17">&lt;</span><span class="mtk4">button</span><span class="mtk1"> </span><span class="mtk12">onClick</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk12">handleClick</span><span class="mtk4">}</span><span class="mtk17">&gt;</span><span class="mtk1">btn</span><span class="mtk17">&lt;/</span><span class="mtk4">button</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk17">&lt;</span><span class="mtk10">Input</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk12">inputRef</span><span class="mtk4">}</span><span class="mtk1"> </span><span class="mtk17">/&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk17">&lt;/</span><span class="mtk10">Input</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  )</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <p>为了能够将 ref 传递到子组件，React 提供了<code>forwardRef</code>（forward 这里时传递的意思）方法</p>
 <p>但从 ref 失控的角度看，<code>forwardRef</code>的意图就很明显了：既然开发者手动调用<code>forwardRef</code>破除防止 ref 失控的限制，那他应该知道自己在做什么，也应该自己承担相应的风险。</p>
 <h3>useImperativeHandle</h3>
 <p>续说上文，既然 ref 失控是因为使用了不应该使用的方法（比如 remove），那么可以限制 ref 中只存在可以使用的方法，这样就杜绝了开发者通过 ref 取到 dom 后，执行不该使用的 api，导致 ref 失控的情况。</p>
-<pre><code class="language-jsx">const Input = forwardRef((props, ref) => {
-  const ref = useRef()
-  useImperativeHandle(() => {
-    return {
-      force: () => ref.current.force(),
-    }
-  })
-  return &#x3C;input {...props} ref={ref} />
-})
-</code></pre>
-<p>为了减少 ref 对 DOM 的滥用，可以使用<code>useImperativeHandle</code>限制 ref 传递的数据结构</p></div><div><div class=""><div class="ant-anchor-wrapper" style="max-height:100vh;position:fixed;left:0;top:100px;width:150px"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div></div></div></div></div></main><footer style="margin-top:var(--space-5);font-size:var(--font-sm)">© <!-- -->2022<!-- --> · Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/react/hooks/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<pre class="grvsc-container dark-default-dark" data-language="jsx" data-index="6"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">Input</span><span class="mtk1"> = </span><span class="mtk11">forwardRef</span><span class="mtk1">((</span><span class="mtk12">props</span><span class="mtk1">, </span><span class="mtk12">ref</span><span class="mtk1">) </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk4">const</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1"> = </span><span class="mtk11">useRef</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk11">useImperativeHandle</span><span class="mtk1">(() </span><span class="mtk4">=&gt;</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      </span><span class="mtk11">force</span><span class="mtk12">:</span><span class="mtk1"> () </span><span class="mtk4">=&gt;</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1">.</span><span class="mtk12">current</span><span class="mtk1">.</span><span class="mtk11">force</span><span class="mtk1">(),</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk17">&lt;</span><span class="mtk4">input</span><span class="mtk1"> </span><span class="mtk4">{</span><span class="mtk1">...</span><span class="mtk12">props</span><span class="mtk4">}</span><span class="mtk1"> </span><span class="mtk12">ref</span><span class="mtk1">=</span><span class="mtk4">{</span><span class="mtk12">ref</span><span class="mtk4">}</span><span class="mtk1"> </span><span class="mtk17">/&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">})</span></span></span></code></pre>
+<p>为了减少 ref 对 DOM 的滥用，可以使用<code>useImperativeHandle</code>限制 ref 传递的数据结构</p>
+<style class="grvsc-styles">
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line > * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: ' ';
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting > .grvsc-code > .grvsc-line::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .dark-default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .dark-default-dark .mtk4 { color: #569CD6; }
+  .dark-default-dark .mtk1 { color: #D4D4D4; }
+  .dark-default-dark .mtk11 { color: #DCDCAA; }
+  .dark-default-dark .mtk12 { color: #9CDCFE; }
+  .dark-default-dark .mtk8 { color: #CE9178; }
+  .dark-default-dark .mtk15 { color: #C586C0; }
+  .dark-default-dark .mtk17 { color: #808080; }
+  .dark-default-dark .mtk7 { color: #B5CEA8; }
+  .dark-default-dark .mtk3 { color: #6A9955; }
+  .dark-default-dark .mtk10 { color: #4EC9B0; }
+  .dark-default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+</style></div><div><div class=""><div class="ant-anchor-wrapper" style="max-height:100vh;position:fixed;left:0;top:100px;width:150px"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div></div></div></div></div></main><footer style="margin-top:var(--space-5);font-size:var(--font-sm)">© <!-- -->2022<!-- --> · Built with<!-- --> <a href="https://www.gatsbyjs.com">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/react/hooks/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
-            window.___chunkMapping="{\"app\":[\"/app-300d0d00742d71594f3d.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-db45316f3b099951c699.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-49bd281c5c6955b61ae8.js\"],\"component---src-templates-blog-jsx\":[\"/component---src-templates-blog-jsx-b5ed0cdfc54bdf6436ba.js\"]}";
+            window.___chunkMapping="{\"app\":[\"/app-f4cc8691acd16a226892.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-db45316f3b099951c699.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-49bd281c5c6955b61ae8.js\"],\"component---src-templates-blog-jsx\":[\"/component---src-templates-blog-jsx-b5ed0cdfc54bdf6436ba.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="ea7f83d874def75cfc12";</script><script src="/awe/webpack-runtime-10184f5532fb70192189.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-300d0d00742d71594f3d.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="9c697b784a75e929b929";</script><script src="/awe/webpack-runtime-10184f5532fb70192189.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-f4cc8691acd16a226892.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
