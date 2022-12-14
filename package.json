@@ -30,9 +30,9 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "publish": "gh-pages -d public",
+    "gh": "gh-pages -d public",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",
