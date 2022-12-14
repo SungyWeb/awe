@@ -5,8 +5,8 @@ path: "/three-birds"
 tag: "css"
 ---
 
-![三只小鸟](./three-birds.gif)
-
+<div align=center><img src="./three-birds.gif" alt=三只小鸟 /></div>
+<!-- ![三只小鸟](./three-birds.gif) -->
 # 纯CSS实现三只小鸟Button
 
 小鸟形状、嘴主要用到了`border-radius`可以四个角分别设置长轴、短轴的的长度，小鸟头上的羽毛和按钮背景主要是`clip-path`的功劳
