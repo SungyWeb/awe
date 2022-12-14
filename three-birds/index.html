@@ -37,7 +37,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">color</span><span class="mtk1">: </span><span class="mtk11">var</span><span class="mtk1">(</span><span class="mtk12">--base_color</span><span class="mtk1">);</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <p>现在看起来应该是这个样子</p>
-<p><img src="./three-birds-01.png" alt="按钮初始样子"></p>
+<p><img src="/87e41b3aeb490c1f13923ba2f875b6e3/three-birds-01.png" alt="按钮初始样子"></p>
 <p>然后给按钮加上一些伪元素做装饰，这里需要用到定位</p>
 <p>通过<code>clip-path</code>先来做一个向右的箭头</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="2"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.button__birds {</span></span></span>
@@ -59,7 +59,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">clip-path</span><span class="mtk1">: path(</span><span class="mtk8">&#39;M24,12.02c0-1.09-.75-1.71-.81-1.77L11.17,.45c-.91-.74-2.21-.56-2.91,.42-.69,.97-.52,2.37,.39,3.11l7.12,5.81-13.7-.02h0C.93,9.77,0,10.76,0,11.99c0,1.23,.93,2.22,2.07,2.22l13.7,.02-7.13,5.78c-.91,.74-1.09,2.13-.4,3.11,.41,.58,1.03,.88,1.65,.88,.44,0,.88-.15,1.25-.45l12.04-9.76c.07-.06,.82-.67,.82-1.77Z&#39;</span><span class="mtk1">);</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
 <p>现在是这样</p>
-<p><img src="./three-birds-02.png" alt="向右箭头"></p>
+<p><img src="/4973b5505aaa4f71c4a3b01e0587d8c3/three-birds-02.png" alt="向右箭头"></p>
 <p>接下来为按钮增加一些“小草”的背景</p>
 <p>同样给<code>.button__wrapper</code>增加<code>::before</code>和<code>::after</code>伪元素</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="4"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.button__birds {</span></span></span>
@@ -90,7 +90,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">right</span><span class="mtk1">: </span><span class="mtk7">0</span><span class="mtk1">;</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">transform</span><span class="mtk1">: </span><span class="mtk11">rotateY</span><span class="mtk1">(</span><span class="mtk7">180deg</span><span class="mtk1">);</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
-<p><img src="./three-birds-03.png" alt="草丛背景"></p>
+<p><img src="/99a7142d7e22bdaec2a739785c4d001f/three-birds-03.png" alt="草丛背景"></p>
 <p>加一些hover效果动画，文字间距变大，草丛向两侧移动，箭头向右移动</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="6"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.button__text {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk7">+ transition: all .3s ease;</span></span></span>
@@ -134,7 +134,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk17">&lt;/</span><span class="mtk4">div</span><span class="mtk17">&gt;</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk17">&lt;/</span><span class="mtk4">a</span><span class="mtk17">&gt;</span></span></span></code></pre>
 <p>目前的效果是这样</p>
-<p><img src="./three-birds-04.png" alt="三只小鸟"></p>
+<p><img src="/d20ad7afe9963050fc194311c1512d0d/three-birds-04.png" alt="三只小鸟"></p>
 <p>给小鸟设置圆角</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="9"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.button__birds {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk7">+ --bird_radius1: 60px 60px 40px 40px / 48px 48px 30px 30px;</span></span></span>
@@ -142,7 +142,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.bird {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk7">+ border-radius: var(--bird_radius1);</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
-<p><img src="./three-birds-05.png" alt="小鸟"></p>
+<p><img src="/683756de5e6f27b3302b7f57dcf7076d/three-birds-05.png" alt="小鸟"></p>
 <p>接下来给小鸟加上羽毛</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="10"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.bird {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk7">+ position: relative;</span></span></span>
@@ -157,7 +157,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">background-color</span><span class="mtk1">: </span><span class="mtk8">#000</span><span class="mtk1">;</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">clip-path</span><span class="mtk1">: path(</span><span class="mtk8">&#39;M10.23,3.32c-3.54,.63-5.72,2.51-7.02,4.23-.33-1.58-.34-3.54,.93-5.12,.52-.65,.41-1.59-.24-2.11C3.24-.19,2.29-.08,1.77,.57c-3.82,4.77-.31,11.11-.13,11.42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0-.01-.02,2.49,.04,2.52,0,.1-.14,1.54-4.82,6.59-5.71,.82-.14,1.37-.92,1.22-1.74s-.94-1.36-1.75-1.21Z&#39;</span><span class="mtk1">);</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
-<p><img src="./three-birds-06.png" alt="小鸟羽毛"></p>
+<p><img src="/4232f92da139bd1d8b65f479ccea1086/three-birds-06.png" alt="小鸟羽毛"></p>
 <p>然后是<code>.bird__face</code>嘴和伪元素画眼睛</p>
 <pre class="grvsc-container dark-default-dark" data-language="diff" data-index="12"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">.button__birds {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk7">+ --sub_color2: #ff8108;</span></span></span>
@@ -189,7 +189,7 @@
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk6">.bird__face::after</span><span class="mtk1"> {</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  </span><span class="mtk12">right</span><span class="mtk1">: </span><span class="mtk7">-5px</span><span class="mtk1">;</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
-<p><img src="./three-birds-07.png" alt="小鸟嘴和眼睛"></p>
+<p><img src="/d91211d29a8f23e247f34c6d01817192/three-birds-07.png" alt="小鸟嘴和眼睛"></p>
 <p>到这里，睡着的小鸟就画完了，主要是通过元素和伪元素进行布局，<code>border-radius</code>和<code>clip-path</code>设置形状。</p>
 <h1>惊醒的小鸟</h1>
 <p>接下来就是通过hover惊醒小鸟，实现动态效果</p>
@@ -863,4 +863,4 @@
           >
             window.___chunkMapping="{\"app\":[\"/app-300d0d00742d71594f3d.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-db45316f3b099951c699.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-f7009eceb47023cfcb55.js\"],\"component---src-templates-blog-jsx\":[\"/component---src-templates-blog-jsx-b5ed0cdfc54bdf6436ba.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="ba1e04ad1123a368b9a3";</script><script src="/awe/webpack-runtime-bf3199d768791eff0ccc.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-300d0d00742d71594f3d.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="25624ee9a34f1f0cc1f8";</script><script src="/awe/webpack-runtime-bf3199d768791eff0ccc.js" async></script><script src="/awe/framework-a4e155cd0476dc1ca208.js" async></script><script src="/awe/app-300d0d00742d71594f3d.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
