@@ -10,7 +10,8 @@ const path = require("path")
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  // pathPrefix: "/awe",
+  pathPrefix: "/awe",
+  assetPrefix: "/awe",
   siteMetadata: {
     title: `blog by sungy`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
@@ -64,7 +65,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1200,
+              maxWidth: 800,
             },
           },
         ],
@@ -73,12 +74,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: "pages",
         path: `${__dirname}/src/pages`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: "images",
         path: `${__dirname}/src/images`,
       },
     },
