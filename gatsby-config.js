@@ -8,8 +8,8 @@ const path = require("path")
 const isProduction = process.env.NODE_ENV === "production"
 
 let url = `https://gatsbystarterdefaultsource.gatsbyjs.io`
-if (isProduction) {
-  url += "/awe"
+if (!isProduction) {
+  // url += "/awe"
 }
 /**
  * @type {import('gatsby').GatsbyConfig}
