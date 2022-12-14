@@ -24,6 +24,12 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              ignoreFileExtensions: [],
+            },
+          },
+          {
             resolve: `gatsby-remark-mermaid`,
             options: {
               launchOptions: {
@@ -61,7 +67,6 @@ module.exports = {
               logLevel: "warn", // Set to 'info' to debug if something looks wrong
             },
           },
-          `gatsby-remark-copy-linked-files`,
         ],
       },
     },
