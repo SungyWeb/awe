@@ -10,12 +10,12 @@ const path = require("path")
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  pathPrefix: "/awe",
+  // pathPrefix: "/awe",
   siteMetadata: {
     title: `blog by sungy`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/awe`,
   },
   plugins: [
     `gatsby-plugin-sharp`,
