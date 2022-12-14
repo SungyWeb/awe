@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Anchor } from "antd"
 import "antd/es/anchor/style/css"
+import './blog.css'
 const indentMap = {
   H1: 0,
   H2: "0.5em",
@@ -47,7 +48,7 @@ export default function Blog({ data }) {
   return (
     <Layout>
       <>
-        <div ref={boxRef} dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div className="blog-templete" ref={boxRef} dangerouslySetInnerHTML={{ __html: post.html }} />
         <Anchor
           style={{ position: "fixed", left: anchorLeft, top: 100, width: 150 }}
         >

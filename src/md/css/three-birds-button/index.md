@@ -5,6 +5,10 @@ path: "/three-birds"
 tag: "css"
 ---
 
+![三只小鸟](./three-birds.gif)
+
+# 纯CSS实现三只小鸟Button
+
 小鸟形状、嘴主要用到了`border-radius`可以四个角分别设置长轴、短轴的的长度，小鸟头上的羽毛和按钮背景主要是`clip-path`的功劳
 
 # 画 Button
@@ -58,6 +62,10 @@ tag: "css"
 然后给按钮加上一些伪元素做装饰，这里需要用到定位
 
 通过`clip-path`先来做一个向右的箭头
+
+> [clip-path](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path) 把元素按照指定路径进行裁剪，svg中也是使用路径，所以想要获取指定路径可以通过专业的svg工具，然后获取里面的路径代码
+
+> clip-path 除了使用`path`，也可以使用`inset`、`circle`、`ellipse`、`polygon`，具体参见 https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path
 
 ```diff
 .button__birds {

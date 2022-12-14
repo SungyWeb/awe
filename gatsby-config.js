@@ -5,7 +5,12 @@
  */
 
 const path = require("path")
+const isProduction = process.env.NODE_ENV === "production"
 
+let url = `https://gatsbystarterdefaultsource.gatsbyjs.io`
+if (isProduction) {
+  url += "/awe"
+}
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -14,8 +19,8 @@ module.exports = {
   siteMetadata: {
     title: `blog by sungy`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/awe`,
+    author: `sungy`,
+    siteUrl: url,
   },
   plugins: [
     `gatsby-plugin-sharp`,
