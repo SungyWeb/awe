@@ -18,6 +18,9 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               slug
             }
+            frontmatter {
+              path
+            }
           }
         }
       }
@@ -25,7 +28,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: node.fields.slug,
+      path: node.frontmatter.path,
       component: path.resolve(`./src/templates/blog.jsx`),
       context: {
         // Data passed to context is available

@@ -11,7 +11,6 @@ const path = require("path")
  */
 module.exports = {
   pathPrefix: "/awe",
-  assetPrefix: "/awe",
   siteMetadata: {
     title: `blog by sungy`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
@@ -62,12 +61,7 @@ module.exports = {
               logLevel: "warn", // Set to 'info' to debug if something looks wrong
             },
           },
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 800,
-            },
-          },
+          `gatsby-remark-copy-linked-files`,
         ],
       },
     },

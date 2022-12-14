@@ -14,7 +14,10 @@ const IndexPage = ({ data }) => {
           return (
             <li key={node.id} className={styles.listItem}>
               <p>
-                <Link className={styles.listItemLink} to={node.fields.slug}>
+                <Link
+                  className={styles.listItemLink}
+                  to={node.frontmatter.path}
+                >
                   {node.frontmatter.title} ↗
                 </Link>
                 <span style={{ color: "#bbb" }}>--{node.frontmatter.date}</span>
@@ -46,14 +49,12 @@ export const query = graphql`
       edges {
         node {
           id
-          fields {
-            slug
-          }
           html
           frontmatter {
-            date(formatString: "")
+            date
             title
-            anthor
+            tag
+            path
           }
           excerpt(format: HTML)
         }

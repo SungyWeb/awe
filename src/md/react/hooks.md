@@ -1,7 +1,7 @@
 ---
 title: "hooks “必”坑指南"
 date: "2022-11-15"
-anthor: "sungy"
+path: "/react-hooks"
 tag: "react"
 ---
 

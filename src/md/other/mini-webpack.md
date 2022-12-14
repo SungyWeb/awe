@@ -1,7 +1,7 @@
 ---
 title: "实现一个简易webpack"
 date: "2022-12-05"
-anthor: "sungy"
+path: "/mini-webpack"
 tag: 'other'
 ---
 

@@ -1,12 +1,9 @@
 ---
-title: '三只小鸟Button'
+title: '纯CSS实现三只小鸟Button'
 date: '2022-12-12'
-anthor: "sungy"
+path: '/three-birds'
 tag: "css"
 ---
-# 纯CSS实现三只小鸟Button
-
-先看效果
 
 
 小鸟形状、嘴主要用到了`border-radius`可以四个角分别设置长轴、短轴的的长度，小鸟头上的羽毛和按钮背景主要是`clip-path`的功劳
@@ -58,7 +55,7 @@ tag: "css"
 
 现在看起来应该是这个样子
 
-![按钮初始样子](../../images/three-birds-01.png)
+![按钮初始样子](./three-birds-01.png)
 
 然后给按钮加上一些伪元素做装饰，这里需要用到定位
 
@@ -90,7 +87,7 @@ tag: "css"
 
 现在是这样
 
-![向右箭头](../../images/three-birds-02.png)
+![向右箭头](./three-birds-02.png)
 
 
 接下来为按钮增加一些“小草”的背景
@@ -131,7 +128,7 @@ tag: "css"
 }
 ```
 
-![草丛背景](../../images/three-birds-03.png)
+![草丛背景](./three-birds-03.png)
 
 加一些hover效果动画，文字间距变大，草丛向两侧移动，箭头向右移动
 
@@ -189,7 +186,7 @@ tag: "css"
 
 目前的效果是这样
 
-![三只小鸟](../../images/three-birds-04.png)
+![三只小鸟](./three-birds-04.png)
 
 给小鸟设置圆角
 
@@ -202,7 +199,7 @@ tag: "css"
 }
 ```
 
-![小鸟](../../images/three-birds-05.png)
+![小鸟](./three-birds-05.png)
 
 接下来给小鸟加上羽毛
 
@@ -225,7 +222,7 @@ tag: "css"
 }
 ```
 
-![小鸟羽毛](../../images/three-birds-06.png)
+![小鸟羽毛](./three-birds-06.png)
 
 然后是`.bird__face`嘴和伪元素画眼睛
 
@@ -265,7 +262,7 @@ tag: "css"
 }
 ```
 
-![小鸟嘴和眼睛](../../images/three-birds-07.png)
+![小鸟嘴和眼睛](./three-birds-07.png)
 
 到这里，睡着的小鸟就画完了，主要是通过元素和伪元素进行布局，`border-radius`和`clip-path`设置形状。
 
